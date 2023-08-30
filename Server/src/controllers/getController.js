@@ -1,23 +1,36 @@
-const axios = require ('axios');
 const {Dogs, Temperaments} = require ('../db');
-const {API_KEY} = process.env;
-const fs = require('fs');
-const LinkApi = `https://api.thedogapi.com/v1/breeds/?api_key=${API_KEY}`;
+const axios = require('axios');
+const { API_KEY } = process.env;
 
+// Generar un número aleatorio entre 1 y 500 (ambos inclusive)
+const randomPage = Math.floor(Math.random() * 500) + 1;
 
-//muestra el perro de la api de a cuerdo a las caract
-const raceDogApi = async () =>{
-    const raceDog =  (await axios.get(LinkApi)).data;
-    return raceDog.map(race => (
-        {id:race.id, 
-        image:race.image.url, 
-        name:race.name, 
-        height:race.height.metric, 
-        weight: race.weight.metric, 
-        life_span: race.life_span,
-        temperament: race.temperament,
-        created:false  }));
+const LinkApi = `https://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc&page=${randomPage}&api_key=${API_KEY}`;
+
+const filmApi = async () => {
+  try {
+    const response = await axios.get(LinkApi);
+    const movieList = response.data.results.slice(0, 12); // Obtener las primeras 12 películas
+    return movieList.map(film => ({
+      id: film.id,
+      image: film.poster_path,
+      title: film.original_title,
+      genres: film.genres,
+      year: film.release_date,
+      language: film.original_language,
+      overview: film.overview,
+      created: false,
+    }));
+  } catch (error) {
+    console.error('Error al obtener películas:', error.message);
+    return [];
+  }
 };
+
+//getMovies().then(movieOptions => {
+//  console.log(movieOptions);
+//});
+
 
 //muestra de acuerdo al id en api y bdd
 const getUserById = async (id, source) => {
@@ -76,4 +89,4 @@ const getAllDogs = async() => {
 
 
 
-module.exports = {raceDogApi, getUserById, createNewDog, searchDogByName, getAllDogs};
+module.exports = {filmApi, getUserById, createNewDog, searchDogByName, getAllDogs};

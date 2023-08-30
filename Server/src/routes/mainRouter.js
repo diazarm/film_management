@@ -1,12 +1,12 @@
 const { Router } = require('express');
-const dogRouter = require ('./dogRouter');
+const filmRouter = require ('./filmRouter');
 const tempRouter = require ('./tempRouter.js');
 
 const mainRouter = Router();
 
-mainRouter.use("/dogs", dogRouter);
+mainRouter.use("/film", filmRouter);
 
-mainRouter.use("/temperaments", tempRouter);
+mainRouter.use("/user", tempRouter);
 
 
 module.exports = mainRouter;

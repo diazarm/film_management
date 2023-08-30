@@ -1,12 +1,12 @@
-const { raceDogApi, getUserById, createNewDog, searchDogByName, getAllDogs} = require('../controllers/getController');
+const { getUserById, createNewDog, searchDogByName, getAllDogs, filmApi} = require('../controllers/getController');
 
 
 //  este es el handler de /dogs (muestra perro)
 
-const getDogRaceHandler = async(req, res) =>{
+const getFilmHandler = async(req, res) =>{
     //const {name} = req.query;
     try {
-        const response = await raceDogApi()
+        const response = await filmApi()
         res.status(200).json(response)
     } catch (error) {
         res.status(400).json({error:error.message})
@@ -62,7 +62,7 @@ const postDogHandler = async(req, res) => {
 
 
 
-module.exports =    {getDogRaceHandler, 
+module.exports =    {getFilmHandler, 
                     postDogHandler,
                     getIdHandler, 
                     getNameHandler};
