@@ -1,4 +1,4 @@
-const {Dogs, Temperaments} = require ('../db');
+const {Films, Temperaments} = require ('../db');
 const axios = require('axios');
 const { API_KEY } = process.env;
 
@@ -58,9 +58,9 @@ const searchDogByName = (name)=>{
 }
 
 //crea nuevo perro en dbb
-const createNewDog = async(name, height, weight, life_span,image, created) =>{
-    if (name && height && weight && life_span &&image) {
-        return await Dogs.create({name, height, weight, life_span,image,created}) //el await es pq devuelve la promesa.
+const createNewFilm = async(title, year,language,overview, image, created) =>{
+    if (title && year && language && overview && image) {
+        return await Films.create({title, year,language,overview, image, created}) //el await es pq devuelve la promesa.
     }else{ throw new Error('Faltan datos')};
 };
 
@@ -89,4 +89,4 @@ const getAllDogs = async() => {
 
 
 
-module.exports = {filmApi, getUserById, createNewDog, searchDogByName, getAllDogs};
+module.exports = {filmApi, getUserById, createNewFilm, searchDogByName, getAllDogs};

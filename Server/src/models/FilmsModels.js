@@ -1,6 +1,6 @@
 const { DataTypes, Sequelize } = require ("sequelize");
 
-module.exports = (sequelize)=> {sequelize.define("Dogs",{
+module.exports = (sequelize)=> {sequelize.define("Films",{
     id:{
         type:DataTypes.UUID,
         defaultValue:DataTypes.UUIDV4,
@@ -8,17 +8,18 @@ module.exports = (sequelize)=> {sequelize.define("Dogs",{
         allowNull:false,
         //defaultValue:DataTypes.UUIDV4 para que asigne aleatoramente 
     },
-   name:{
+   title:{
         type:DataTypes.STRING,
         allowNull:false,
    },
-   height:{
-        type:DataTypes.ARRAY(DataTypes.STRING),  //cuando envio los datos por medio del body se hace con un array
+   year:{
+       type: DataTypes.DATEONLY,
    },
-   weight:{
-        type:DataTypes.ARRAY(DataTypes.STRING),
+   language:{
+        type:DataTypes.STRING,
+        
    },
-   life_span:{
+   overview:{
         type:DataTypes.STRING,
         allowNull:false,
    },

@@ -1,4 +1,4 @@
-const { getUserById, createNewDog, searchDogByName, getAllDogs, filmApi} = require('../controllers/getController');
+const { getUserById, createNewFilm, searchDogByName, getAllDogs, filmApi} = require('../controllers/getController');
 
 
 //  este es el handler de /dogs (muestra perro)
@@ -15,7 +15,7 @@ const getFilmHandler = async(req, res) =>{
 
 //  este es /dogs/:id 
 
-const getIdHandler = async(req, res) =>{
+const deleteIdHandler = async(req, res) =>{
     const  {idRaza} = req.params;
     const source = isNaN(idRaza) ? 'bdd' : 'api';
         try {
@@ -48,13 +48,13 @@ const getNameHandler = async(req, res) =>{
 
 
 
-// post/dogs crea un perro    
+// post/film crea una pelicula    
     
-const postDogHandler = async(req, res) => {
+const postFilmHandler = async(req, res) => {
         try {
-            const {name, height,weight,life_span, image, created} = req.body;
-            const newDog = await createNewDog(name, height,weight,life_span, image,created);
-            res.status(201).json({message:newDog}); //201 exito creado
+            const {title, year,language,overview, image, created} = req.body;
+            const newFilm = await createNewFilm(title, year,language,overview,image,created);
+            res.status(201).json({message:newFilm}); //201 exito creado
         } catch (error) {
             res.status(400).json({error:error.message});
         }
@@ -63,6 +63,6 @@ const postDogHandler = async(req, res) => {
 
 
 module.exports =    {getFilmHandler, 
-                    postDogHandler,
-                    getIdHandler, 
+                    postFilmHandler,
+                    deleteIdHandler, 
                     getNameHandler};
