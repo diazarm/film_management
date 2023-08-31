@@ -1,4 +1,4 @@
-const {Films, Temperaments} = require ('../db');
+const { Films, Temperaments } = require('../db');
 const axios = require('axios');
 const { API_KEY } = process.env;
 
@@ -9,9 +9,13 @@ const LinkApi = `https://api.themoviedb.org/3/discover/movie?sort_by=popularity.
 
 const filmApi = async () => {
   try {
+    // Obtener películas de la base de datos
+    const dbMovies = await Films.findAll({
+      limit: 12 
+    });
+
     const response = await axios.get(LinkApi);
-    const movieList = response.data.results.slice(0, 12); // Obtener las primeras 12 películas
-    return movieList.map(film => ({
+    const apiMovies = response.data.results.map(film => ({
       id: film.id,
       image: film.poster_path,
       title: film.original_title,
@@ -21,11 +25,20 @@ const filmApi = async () => {
       overview: film.overview,
       created: false,
     }));
+
+    // Combina las listas de películas, dando prioridad a las películas de la base de datos
+    const combinedMovies = [...dbMovies, ...apiMovies];
+
+    // Tomar las primeras 12 películas de la lista combinada
+    const selectedMovies = combinedMovies.slice(0, 12);
+
+    return selectedMovies;
   } catch (error) {
     console.error('Error al obtener películas:', error.message);
     return [];
   }
 };
+
 
 //getMovies().then(movieOptions => {
 //  console.log(movieOptions);
