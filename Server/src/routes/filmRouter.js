@@ -1,6 +1,6 @@
 const {Router} = require('express');
 const  {getFilmHandler,deleteIdHandler, 
-        getNameHandler, postFilmHandler
+        putIdHandler, postFilmHandler
        } = require('../handlers/filmGetHandler');
 //const { filmApi } = require('../controllers/getController');
 
@@ -9,7 +9,7 @@ const filmRouter = Router();
 
 filmRouter.get("/", getFilmHandler);
 
-filmRouter.get("/name", getNameHandler);
+filmRouter.put("/:id", putIdHandler);
 
 filmRouter.delete("/:id", deleteIdHandler);
 

@@ -64,6 +64,37 @@ const createNewFilm = async(title, year,language,overview, image, created) =>{
     }else{ throw new Error('Faltan datos')};
 };
 
+const putDbFilm = async (id, dataToUpdate) => {
+  console.log("pasa por aqui", id);
+
+   
+    try {
+      const movie = await Films.findByPk(id);
+      if (!movie) {
+        return 'Movie not found';
+      }
+      if (dataToUpdate.title) {
+        movie.title = dataToUpdate.title;
+      }
+      if (dataToUpdate.year) {
+        movie.year = dataToUpdate.year;
+      }
+      if (dataToUpdate.language) {
+        movie.language = dataToUpdate.language;
+      }
+      if (dataToUpdate.overview) {
+        movie.overview = dataToUpdate.overview;
+      }
+      await movie.save()
+      return 'Movie updated successfully';
+    } catch (error) {
+      console.error('Error updating movie:', error);
+      throw error; // Relanza el error para que pueda ser manejado en el handler
+    }
+    
+}
+
+
 
 
 //muestra todos los perros de api y bdd 
@@ -89,4 +120,4 @@ const getAllDogs = async() => {
 
 
 
-module.exports = {filmApi, getUserById, createNewFilm, searchDogByName, getAllDogs};
+module.exports = {putDbFilm, filmApi, getUserById, createNewFilm, searchDogByName, getAllDogs};
