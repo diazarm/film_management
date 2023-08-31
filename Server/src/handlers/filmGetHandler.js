@@ -1,5 +1,5 @@
 const { getUserById, createNewFilm, searchDogByName, getAllDogs, filmApi} = require('../controllers/getController');
-
+const deleteFilmController = require ('../controllers/deleteFilmController')
 
 //  este es el handler de /dogs (muestra perro)
 
@@ -13,14 +13,13 @@ const getFilmHandler = async(req, res) =>{
     }
 };
 
-//  este es /dogs/:id 
+//  este es /film/:id para borrar una pelicula 
 
 const deleteIdHandler = async(req, res) =>{
-    const  {idRaza} = req.params;
-    const source = isNaN(idRaza) ? 'bdd' : 'api';
+    const  {id} = req.params;
         try {
-            const dogId = await getUserById(idRaza, source);
-            res.status(200).json(dogId)
+            const deleteFilm = await deleteFilmController(id);
+            res.status(200).json(deleteFilm)
         } catch (error) {
             res.status(400).json({error:error.message});
     }
