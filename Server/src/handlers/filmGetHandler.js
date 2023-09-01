@@ -1,4 +1,4 @@
-const { getUserById, createNewFilm, searchDogByName, getAllDogs, filmApi, putDbFilm} = require('../controllers/getController');
+const {createNewFilm,  filmApi, putDbFilm, getIdController} = require('../controllers/getController');
 const deleteFilmController = require ('../controllers/deleteFilmController')
 
 //  este es el handler de /dogs (muestra perro)
@@ -25,6 +25,16 @@ const deleteIdHandler = async(req, res) =>{
     }
 };
 
+const getIdFilmHandler = async(req, res) => {
+    const {id} = req.params;
+    const source = isNaN(id) ? 'bdd' : 'api';
+    try {
+        const getIdFilm = await getIdController(id, source)
+        res.status(200).json({message:getIdFilm})
+    } catch (error) {
+        res.status(400).json({error:error.message})
+    }
+}
 
 // este es /film/id = para que me traiga de la db por id (en el front al seleccionar una pelicula ) 
 
@@ -63,4 +73,4 @@ const postFilmHandler = async(req, res) => {
 module.exports =    {getFilmHandler, 
                     postFilmHandler,
                     deleteIdHandler, 
-                    putIdHandler};
+                    putIdHandler, getIdFilmHandler};

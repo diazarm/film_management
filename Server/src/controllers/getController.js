@@ -25,13 +25,13 @@ const filmApi = async () => {
       overview: film.overview,
       created: false,
     }));
-
+    
     // Combina las listas de películas, dando prioridad a las películas de la base de datos
     const combinedMovies = [...dbMovies, ...apiMovies];
-
+    
     // Tomar las primeras 12 películas de la lista combinada
     const selectedMovies = combinedMovies.slice(0, 12);
-
+    
     return selectedMovies;
   } catch (error) {
     console.error('Error al obtener películas:', error.message);
@@ -41,27 +41,27 @@ const filmApi = async () => {
 
 
 //getMovies().then(movieOptions => {
-//  console.log(movieOptions);
-//});
+  //  console.log(movieOptions);
+  //});
 
 
 //muestra de acuerdo al id en api y bdd
-const getUserById = async (id, source) => {
-  const urlData = (await axios.get(LinkApi)).data;
+const getIdController = async (id, source) => {
+  const urlDataArray = [];
+  const urlData = (await axios.get(`https://api.themoviedb.org/3/movie/${id}?api_key=${API_KEY}`)).data;
+  urlDataArray.push(urlData)
   if (source === "api") {
-    const apiFiltrada = urlData.filter(ele => ele.id === Number(id));
-    const nuevo = {
-          id: apiFiltrada[0].id,
-          name: apiFiltrada[0].name,
-          height: apiFiltrada[0].height.metric,
-          weight: apiFiltrada[0].weight.metric,
-          life_span: apiFiltrada[0].life_span,
-          image: apiFiltrada[0].image.url,
-          created: false,
-        };
-        return nuevo;
+    const newArray = urlDataArray.map(apiFiltrada => ({
+      id: apiFiltrada.id,
+      name: apiFiltrada.original_title,
+      year: apiFiltrada.release_date,
+      language: apiFiltrada.original_language, // Cambiado a `original_language` en lugar de `language`
+      overview: apiFiltrada.overview,
+      created: false,
+    }));
+    return newArray;
   } else {
-    return await Dogs.findByPk(id);
+    return await Films.findByPk(id);
   }
 };
 
@@ -133,4 +133,4 @@ const getAllDogs = async() => {
 
 
 
-module.exports = {putDbFilm, filmApi, getUserById, createNewFilm, searchDogByName, getAllDogs};
+module.exports = {putDbFilm, filmApi, createNewFilm, getIdController,  searchDogByName, getAllDogs};
