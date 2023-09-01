@@ -1,0 +1,70 @@
+.divDetail {
+    background-image: url("../../assets/images/Detail.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    min-height: 100vh;
+  }
+  
+.divCountry {
+    display: flex;
+    flex-direction: row;
+}
+
+.divImgCountry {
+    margin: 2em 0 0 2em;
+    font-family:Georgia, 'Times New Roman', Times, serif;
+    color: #ffffff;
+    text-shadow: 2px 0 4px  rgb(0, 0, 0);
+    background-color: rgba(211, 178, 101, 0.351);
+    border-radius: 2em;
+    width: 35%;
+}
+
+.divImgCountry img {
+    height: 32vh;
+    width: 22vw;
+    margin-top: 1em;
+    border-radius: 1.5em;
+    box-shadow: 1px 1px 1px 3px rgb(249, 235, 115);
+}
+
+.divActCountry {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: rgba(247, 203, 93, 0.434);
+    margin: 2em 0 0 2em;
+    border-radius: 2em;
+    width: 44%;
+}
+
+.divAct {
+    background-color: rgba(53, 115, 15, 0.655);
+    font-style: italic;
+    width: 90%;
+    border-radius: 1em;
+    height: 18vh;
+    margin-bottom: 0.5em;
+    color: white;
+    text-shadow: 1px 1px black;
+
+}
+
+.h3 {
+    font-size: 3.25vh;
+    color:white;
+    text-shadow: 1px 1px black;
+}
+
+.h4 {
+    display: inline-flex;
+    flex-direction: row;
+    gap: 4em;
+    font-size: 2.75vh;
+    margin-top: -1em;
+}
+
+.h2{
+    color:white;
+    text-shadow: 1px 2px black;
+}
