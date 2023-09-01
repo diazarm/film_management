@@ -53,6 +53,7 @@ const getIdController = async (id, source) => {
   if (source === "api") {
     const newArray = urlDataArray.map(apiFiltrada => ({
       id: apiFiltrada.id,
+      image: "https://image.tmdb.org/t/p/w500" + apiFiltrada.backdrop_path,
       name: apiFiltrada.original_title,
       year: apiFiltrada.release_date,
       language: apiFiltrada.original_language, // Cambiado a `original_language` en lugar de `language`
@@ -65,12 +66,8 @@ const getIdController = async (id, source) => {
   }
 };
 
-// busca por nombre api y bdd
-const searchDogByName = (name)=>{
 
-}
 
-//crea nuevo perro en dbb
 const createNewFilm = async(title, year,language,overview, image, created) =>{
     if (title && year && language && overview && image) {
         return await Films.create({title, year,language,overview, image, created}) //el await es pq devuelve la promesa.
@@ -110,27 +107,7 @@ const putDbFilm = async (id, dataToUpdate) => {
 
 
 
-//muestra todos los perros de api y bdd 
-const getAllDogs = async() => {
-  const dataBaseDogs = await Dogs.findAll();
-  const apiDogsRaw = (await axios.get(LinkApi)).data;
-     
-  const cleanArray = (arr) => arr.map((elem) => {
-    return {
-      id: elem.id,
-      name: elem.name,
-      height: elem.height,
-      weight: elem.weight,
-      life_span: elem.life_span,
-      image: elem.image,
-      temperament: elem.temperament
-    };
- });
- 
-  const apiDogs = cleanArray(apiDogsRaw);   
-  return [...dataBaseDogs, ...apiDogs];
-};
 
 
 
-module.exports = {putDbFilm, filmApi, createNewFilm, getIdController,  searchDogByName, getAllDogs};
+module.exports = {putDbFilm, filmApi, createNewFilm, getIdController,  };
