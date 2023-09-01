@@ -5,15 +5,15 @@ import stylesCardsContainer from "./CardsContainer.module.css";
 const CardsContainer = ({currentCountries}) => {
   return (
     <div className={stylesCardsContainer.div}>
-      {currentCountries?.map(country => {
+      {currentCountries?.map(film => {
         return (
           <Card
-            key={country.id}
-            id={country.id}
-            created={country.created}
-            image={country.image}
-            title={country.title}
-            language={country.language}
+            key={film.id}
+            id={film.id}
+            created={film.created}
+            image={film.image}
+            title={film.title}
+            language={film.language}
           />
         );
       })}

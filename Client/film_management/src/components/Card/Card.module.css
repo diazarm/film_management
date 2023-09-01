@@ -4,7 +4,7 @@
     border: solid rgba(0, 0, 0, 0.584);
     border-radius: 1em;
     margin-bottom: 0.5em;
-    background-color: rgba(224, 171, 80, 0.355);
+    background-color: rgba(50, 91, 225, 0.355);
 }
 
 .div:hover, .div:hover .img {
@@ -45,4 +45,5 @@
 
 .h3 {
     font-size: 1.5vw;
+    color: antiquewhite;
 }

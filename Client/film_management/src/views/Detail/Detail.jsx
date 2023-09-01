@@ -8,7 +8,7 @@ const Detail = () => {
     const dispatch = useDispatch();
     const { id } = useParams();
     const filmDetail = useSelector((state) => state.filmDetail);
-
+ 
     useEffect(() => {
         dispatch(getFilmById(id));
         return () => {
@@ -22,12 +22,11 @@ const Detail = () => {
                 <div className={stylesDetail.divImgCountry}>
                     <img src={filmDetail.image} alt={filmDetail.image}/>
                     <h2 className={stylesDetail.h2}>ID | {filmDetail.id}</h2>
-                    <h2 className={stylesDetail.h2}>NAME | {filmDetail.title}</h2>
-                    <h2 className={stylesDetail.h2}>CONTINENT | {filmDetail.continent}</h2>
-                    <h2 className={stylesDetail.h2}>CAPITAL | {filmDetail.capital}</h2>
-                    {filmDetail.subregion && <h2 className={stylesDetail.h2}>SUBREGION | {filmDetail.subregion}</h2>}
-                    {filmDetail.area && <h2 className={stylesDetail.h2}>AREA | {filmDetail.area} km2</h2>}
-                    <h2 className={stylesDetail.h2}>POPULATION | {filmDetail.population} </h2>
+                    <h2 className={stylesDetail.h2}>TITLE | {filmDetail.name}</h2>
+                    <h2 className={stylesDetail.h2}>YEAR | {filmDetail.year}</h2>
+                    <h2 className={stylesDetail.h2}>LANGUAGE | {filmDetail.language}</h2>
+                    <h2 className={stylesDetail.h2}>OVERVIEW | {filmDetail.overview}</h2>
+                    
                 </div>
             </div>
                 

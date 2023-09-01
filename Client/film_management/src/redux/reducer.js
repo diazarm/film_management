@@ -3,7 +3,7 @@ import { GET_COUNTRIES, GET_COUNTRY_BY_NAME, NEXT_PAGE, PREV_PAGE, NUMBER_PAGE, 
 const initialState = {
     countries: [],
     countriesCopy: [],
-    countryDetail: {},
+    filmDetail: {},
     activities: [],
     numPage: 1,
 };
@@ -45,12 +45,12 @@ const reducer = (state = initialState, { type, payload }) => {
         case GET_FILM_BY_ID:
             return {
                 ...state,
-                countryDetail: payload,
+                filmDetail: payload,
             };
         case CLEAN_DETAIL:
             return {
                 ...state,
-                countryDetail: {},
+                filmDetail: {},
             };
       
         case POST_ACTIVITY:

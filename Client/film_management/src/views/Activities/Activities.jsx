@@ -18,7 +18,7 @@ const Activities = () => {
             <div className={stylesActivities.divActs}>
                 <ActivitiesContainer activities={activities}/>
             </div>
-            {!activities.length && <div className={stylesActivities.divNoActivities}><h2>There are not activities</h2></div>}
+            {!activities.length && <div className={stylesActivities.divNoActivities}><h2>There are not movies</h2></div>}
         </div>
     );
 };

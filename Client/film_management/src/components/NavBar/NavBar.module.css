@@ -3,7 +3,7 @@
     align-items: center;
     justify-content: space-between;
     height: 6vh;
-    background-image: linear-gradient(rgba(239, 178, 71, 0.899),rgba(167, 136, 62, 0.718));
+    background-image: linear-gradient(rgba(23, 40, 223, 0.899),rgba(23, 21, 128, 0.718));
 }
   
 
@@ -16,14 +16,14 @@
     width: 25vw;
     padding: 0;
     height: 6vh;
-    background-image: linear-gradient(rgba(197, 163, 63, 0.899),rgba(114, 92, 49, 0.718));
+    background-image: linear-gradient(rgba(123, 40, 223, 0.899),rgba(23, 21, 128, 0.718));
     opacity: 80%;
     border-radius: 15px;
     border: none;
 }
 
 .btn:hover {
-    background-color:rgb(126, 91, 91);
+    background-color:rgb(48, 75, 233);
     cursor: pointer;
     opacity: 100%;
     color: #fff;

@@ -18,14 +18,14 @@ const NavBar = () => {
             {location.pathname === "/home" && <SearchBar />}
             {location.pathname === "/activities" && 
             <Link to="/create"> 
-                <button className={stylesNavBar.btn}> Add new Activity</ button>
+                <button className={stylesNavBar.btn}> Add new Movie</ button>
             </Link>
             }
             <Link to='/activities'>
                 <button className={stylesNavBar.btn}>
                     <img src={ActivitiesIcon1} alt="ActivitiesIcon1" className={stylesNavBar.img}/>
                     <img src={ActivitiesIcon2} alt="ActivitiesIcon2" className={stylesNavBar.img}/>
-                    Activities
+                    Movies
                     <img src={ActivitiesIcon3} alt="ActivitiesIcon3" className={stylesNavBar.img}/>
                     <img src={ActivitiesIcon4} alt="ActivitiesIcon4" className={stylesNavBar.img}/>
                 </button>
