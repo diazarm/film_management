@@ -2,7 +2,9 @@ import { Link } from "react-router-dom";
 import stylesCard from "./Card.module.css";
 import noPhoto from "../../assets/images/no_photo.webp"
 
+
 const Card = (film) => {
+ 
     return (
         <Link to={`/detail/${film.id}`} className={stylesCard.link}>
             <div className={stylesCard.div}>
@@ -14,8 +16,7 @@ const Card = (film) => {
           {film.created ? "available in database" : "available in Api"}
         </h3>
            
-
-            </div>
+        </div>
         </Link >
     )
 };

@@ -1,4 +1,4 @@
-import { GET_FILMS, GET_COUNTRY_BY_NAME, NEXT_PAGE, PREV_PAGE, NUMBER_PAGE, GET_FILM_BY_ID, CLEAN_DETAIL, POST_ACTIVITY, RESET, GET_ACTIVITIES, SORT_BY_NAME, SORT_BY_POPULATION, FILTER_CONTINENT, FILTER_ACTIVITY, DELETE_ACTIVITY, } from "./actionsTypes";
+import { GET_FILMS, GET_COUNTRY_BY_NAME, NEXT_PAGE, PREV_PAGE, NUMBER_PAGE, GET_FILM_BY_ID, CLEAN_DETAIL, POST_ACTIVITY, RESET, GET_ACTIVITIES, SORT_BY_NAME, SORT_BY_POPULATION, FILTER_CONTINENT, FILTER_ACTIVITY, DELETE_FILM, } from "./actionsTypes";
 
 const initialState = {
     countries: [],
@@ -96,7 +96,7 @@ const reducer = (state = initialState, { type, payload }) => {
                 countries: state.countriesCopy,
                 numPage: 1,
             };
-        case DELETE_ACTIVITY:
+        case DELETE_FILM:
             return {
                 ...state,
                 activities: state.activities.filter(activity => activity.id !== payload),

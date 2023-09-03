@@ -4,7 +4,7 @@ import Pagination from "../../components/Pagination/Pagination";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getFilms }  from "../../redux/actions";
-//, sortByName, sortByPopulation, filterContinent,  reset 
+
 const Home = () => {
     const dispatch = useDispatch();
     const { countries, numPage, countriesCopy } = useSelector((state) => state);
@@ -18,55 +18,10 @@ const Home = () => {
     let pages = Math.ceil(countries.length / 10);
     let currentCountries = countries.slice(first, second);
 
-    // const handleSortByName = (event) => {
-    //     event.preventDefault();
-    //     const  {value}  =  event.target ;
-    //     dispatch(sortByName(value));
-    // };
-    // const handleSortByPopulation = (event) => {
-    //     event.preventDefault();
-    //     const { value } = event.target;
-    //     dispatch(sortByPopulation(value));
-    // };
-    // const handleFilterContinent = (event) => {
-    //     event.preventDefault();
-    //     const { value } = event.target;
-    //     dispatch(filterContinent(value));
-    // };
-   
-    // const handleReset = () => {
-    //     dispatch(reset());
-    //     const selectElements = document.querySelectorAll("select");
-    //     selectElements.forEach((select) => {
-    //         select.value = "default";
-    //     });
-    // };
 
     return (
         <div className={stylesHome.divHome}>
-            {/* <div className={stylesHome.divFilters}>
-                <select className={stylesHome.selFilters} onChange={handleSortByName} name="sortByName" defaultValue={"default"}>
-                    <option value="default" disabled>Sort by Name...</option>
-                    <option value="A - Z">A - Z</option>
-                    <option value="Z - A">Z - A</option>
-                </select>
-                <select className={stylesHome.selFilters} onChange={handleSortByPopulation} name="sortByPopulation" defaultValue={"default"}>
-                    <option value="default" disabled>Sort by Population...</option>
-                    <option value="Max - Min">Max - Min</option>
-                    <option value="Min - Max">Min - Max</option>
-                </select>
-                <select className={stylesHome.selFilters} onChange={handleFilterContinent} name="filterContinent" defaultValue={"default"}>
-                    <option value="default" disabled>Filter by Continent</option>
-                    <option value="Africa">Africa</option>
-                    <option value="Europe">Europe</option>
-                    <option value="Oceania">Oceania</option>
-                    <option value="Asia">Asia</option>
-                    <option value="South America">South America</option>
-                    <option value="North America">North America</option>
-                    <option value="Antarctica">Antarctica</option>
-                </select>
-                <button className={stylesHome.btnReset} onClick={handleReset}>Reset</button>
-            </div> */}
+            
             <div className={stylesHome.divPag}>
                 <Pagination pages={pages}/>
             </div>

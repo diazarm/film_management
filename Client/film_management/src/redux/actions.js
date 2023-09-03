@@ -1,5 +1,5 @@
 import axios from "axios";
-import { GET_FILMS, GET_COUNTRY_BY_NAME, NEXT_PAGE, PREV_PAGE, NUMBER_PAGE, GET_FILM_BY_ID, CLEAN_DETAIL, POST_ACTIVITY, RESET, GET_ACTIVITIES, SORT_BY_NAME, SORT_BY_POPULATION, FILTER_CONTINENT, DELETE_ACTIVITY } from "./actionsTypes";
+import { GET_FILMS, GET_COUNTRY_BY_NAME, NEXT_PAGE, PREV_PAGE, NUMBER_PAGE, GET_FILM_BY_ID, CLEAN_DETAIL, POST_ACTIVITY, RESET, GET_ACTIVITIES, SORT_BY_NAME, SORT_BY_POPULATION, FILTER_CONTINENT, DELETE_FILM } from "./actionsTypes";
 
 const endPFilm = "http://localhost:3001/film";
 const endPActivities = "http://localhost:3001/activities";
@@ -60,14 +60,14 @@ export const getActivities = () => {
     };
 };
 
-export const deleteActivity = (id) => {
+export const deleteFilm = (id) => {
     return async (dispatch) => {
         try {
-            const { data } = await axios.delete(`${endPActivities}/${id}`);
+            const { data } = await axios.delete(`${endPFilm}/${id}`);
             if (!data) throw Error();
-            return dispatch({ type: DELETE_ACTIVITY, payload: id})
+            return dispatch({ type: DELETE_FILM, payload: id})
         } catch (error) {
-            alert("Couldn't delete the activity");       
+            alert("Couldn't delete the movie");       
         }
     };
 };
