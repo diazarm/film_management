@@ -24,20 +24,14 @@ const deleteIdHandler = async(req, res) =>{
             res.status(400).json({error:error.message});
     }
 };
-//! devuelve solo un objeto!! verificar que necesita!
+
 const getIdFilmHandler = async (req, res) => {
   const { id } = req.params;
   const source = isNaN(id) ? 'bdd' : 'api';
   try {
     const getIdFilm = await getIdController(id, source);
-
-    if (getIdFilm.length > 0) {
-      const soloObjeto = getIdFilm[0];
-      res.status(200).json(soloObjeto);
-    } else {
-      // Puedes manejar el caso en el que no haya resultados aquí
-      res.status(404).json({ error: 'No se encontraron resultados' });
-    }
+    res.status(200).json(getIdFilm)
+    
   } catch (error) {
     res.status(400).json({ error: error.message });
   }

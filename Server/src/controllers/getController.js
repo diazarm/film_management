@@ -1,4 +1,4 @@
-const { Films, Temperaments } = require('../db');
+const { Films } = require('../db');
 const axios = require('axios');
 const { API_KEY } = process.env;
 
@@ -55,14 +55,15 @@ const getIdController = async (id, source) => {
       id: apiFiltrada.id,
       image: "https://image.tmdb.org/t/p/w500" + apiFiltrada.backdrop_path,
       name: apiFiltrada.original_title,
+      name: apiFiltrada.title,
       year: apiFiltrada.release_date,
       language: apiFiltrada.original_language, // Cambiado a `original_language` en lugar de `language`
       overview: apiFiltrada.overview,
       created: false,
     }));
-    return newArray;
+    return newArray[0];
   } else {
-    return await Films.findByPk(id);
+    return await Films.findByPk(id); 
   }
 };
 
@@ -110,4 +111,4 @@ const putDbFilm = async (id, dataToUpdate) => {
 
 
 
-module.exports = {putDbFilm, filmApi, createNewFilm, getIdController,  };
+module.exports = {putDbFilm, filmApi, createNewFilm, getIdController};
