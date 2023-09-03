@@ -1,5 +1,5 @@
 import { Link, useLocation } from "react-router-dom";
-import SearchBar from "../SearchBar/SearchBar";
+//import SearchBar from "../SearchBar/SearchBar";
 import stylesNavBar from "./NavBar.module.css";
 import HomeIcon  from "../../assets/images/HomeIcon.png";
 import ActivitiesIcon1 from "../../assets/images/ActivitiesIcon1.png";
@@ -15,7 +15,7 @@ const NavBar = () => {
                 <button className={stylesNavBar.btn}>
                     <img src={HomeIcon} alt="HomeIcon" className={stylesNavBar.img}/> Home </button>
             </Link>
-            {location.pathname === "/home" && <SearchBar />}
+            {/* {location.pathname === "/home" && <SearchBar />} */}
             {location.pathname === "/activities" && 
             <Link to="/create"> 
                 <button className={stylesNavBar.btn}> Add new Movie</ button>

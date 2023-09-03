@@ -1,4 +1,4 @@
-export const GET_COUNTRIES = "GET_COUNTRIES";
+export const GET_FILMS = "GET_FILMS";
 export const GET_ACTIVITIES = "GET_ACTIVITIES";
 export const GET_COUNTRY_BY_NAME = "GET_COUNTRY_BY_NAME";
 export const NEXT_PAGE = 'NEXT_PAGE';

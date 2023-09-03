@@ -3,49 +3,48 @@ import CardsContainer from "../../components/CardsContainer/CardsContainer";
 import Pagination from "../../components/Pagination/Pagination";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getCountries, getActivities, sortByName, sortByPopulation, filterContinent,  reset } from "../../redux/actions";
-
+import { getFilms }  from "../../redux/actions";
+//, sortByName, sortByPopulation, filterContinent,  reset 
 const Home = () => {
     const dispatch = useDispatch();
-    const { countries, numPage, activities, countriesCopy } = useSelector((state) => state);
+    const { countries, numPage, countriesCopy } = useSelector((state) => state);
 
     useEffect(() => {
-        if (!countriesCopy.length) dispatch(getCountries());
-        if (!activities.length) dispatch(getActivities());
-    }, [activities.length, countriesCopy.length, dispatch]);
+        if (!countriesCopy.length) dispatch(getFilms());
+    }, [ countriesCopy.length, dispatch]);
 
     let first = (numPage - 1) * 10;
     let second = numPage * 10;
     let pages = Math.ceil(countries.length / 10);
     let currentCountries = countries.slice(first, second);
 
-    const handleSortByName = (event) => {
-        event.preventDefault();
-        const  {value}  =  event.target ;
-        dispatch(sortByName(value));
-    };
-    const handleSortByPopulation = (event) => {
-        event.preventDefault();
-        const { value } = event.target;
-        dispatch(sortByPopulation(value));
-    };
-    const handleFilterContinent = (event) => {
-        event.preventDefault();
-        const { value } = event.target;
-        dispatch(filterContinent(value));
-    };
+    // const handleSortByName = (event) => {
+    //     event.preventDefault();
+    //     const  {value}  =  event.target ;
+    //     dispatch(sortByName(value));
+    // };
+    // const handleSortByPopulation = (event) => {
+    //     event.preventDefault();
+    //     const { value } = event.target;
+    //     dispatch(sortByPopulation(value));
+    // };
+    // const handleFilterContinent = (event) => {
+    //     event.preventDefault();
+    //     const { value } = event.target;
+    //     dispatch(filterContinent(value));
+    // };
    
-    const handleReset = () => {
-        dispatch(reset());
-        const selectElements = document.querySelectorAll("select");
-        selectElements.forEach((select) => {
-            select.value = "default";
-        });
-    };
+    // const handleReset = () => {
+    //     dispatch(reset());
+    //     const selectElements = document.querySelectorAll("select");
+    //     selectElements.forEach((select) => {
+    //         select.value = "default";
+    //     });
+    // };
 
     return (
         <div className={stylesHome.divHome}>
-            <div className={stylesHome.divFilters}>
+            {/* <div className={stylesHome.divFilters}>
                 <select className={stylesHome.selFilters} onChange={handleSortByName} name="sortByName" defaultValue={"default"}>
                     <option value="default" disabled>Sort by Name...</option>
                     <option value="A - Z">A - Z</option>
@@ -67,7 +66,7 @@ const Home = () => {
                     <option value="Antarctica">Antarctica</option>
                 </select>
                 <button className={stylesHome.btnReset} onClick={handleReset}>Reset</button>
-            </div>
+            </div> */}
             <div className={stylesHome.divPag}>
                 <Pagination pages={pages}/>
             </div>

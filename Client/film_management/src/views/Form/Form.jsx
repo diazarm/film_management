@@ -1,6 +1,6 @@
 import { useState, useEffect, useMemo } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getCountries, postActivity } from "../../redux/actions";
+import { getFilms, postActivity } from "../../redux/actions";
 import validationForm from "../../helpers/Validations/ValidationForm";
 import stylesForm from "./Form.module.css";
 
@@ -21,7 +21,7 @@ const Form = () => {
     const { countriesCopy } = useSelector((state) => state);
     
     useEffect(() => {
-        if (!countriesCopy.length) dispatch(getCountries())
+        if (!countriesCopy.length) dispatch(getFilms())
     }, [countriesCopy.length, dispatch])
 
     const isFormEmpty = useMemo(() => {
@@ -93,14 +93,18 @@ const Form = () => {
                 <div className={stylesForm.divCountries}>
                     <label htmlFor="countries" className={stylesForm.labelCountries}>Countries associated with the activity</label>
                     <div className={stylesForm.divCounts}>
-                        {countriesCopy.slice().sort((a, b) => a.name.localeCompare(b.name)).map((event) => (
-                            <div key={event.id}>
-                                <input id={event.id} value={event.name} name={event.name} type="checkbox" onChange={handleCountries} className={stylesForm.inputImg}/>
-                                <img src={event.flag} alt={event.flag} className={stylesForm.imgCountries}/>
-                                <label htmlFor={event.id} className={stylesForm.labelsCounts}> {event.name}</label>    
-                            </div>
-                        ))}
-                    </div>
+                {countriesCopy
+                    .filter(event => event.name) 
+                    .sort((a, b) => (a.name || '').localeCompare(b.name || ''))
+                    .map((event) => (
+                    <div key={event.id}>
+                <input id={event.id} value={event.name} name={event.name} type="checkbox" onChange={handleCountries} className={stylesForm.inputImg}/>
+                <img src={event.flag} alt={event.flag} className={stylesForm.imgCountries}/>
+                <label htmlFor={event.id} className={stylesForm.labelsCounts}> {event.name}</label>    
+            </div>
+        ))}
+</div>
+
                     {errors.countries && <span className={stylesForm.spans}>{errors.countries}</span>}
                 </div>
                 <button className={stylesForm.btnSubmit} type="submit" disabled={isFormEmpty || Object.keys(errors).length}>Add activity</button>

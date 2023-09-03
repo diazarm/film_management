@@ -1,14 +1,14 @@
 import axios from "axios";
-import { GET_COUNTRIES, GET_COUNTRY_BY_NAME, NEXT_PAGE, PREV_PAGE, NUMBER_PAGE, GET_FILM_BY_ID, CLEAN_DETAIL, POST_ACTIVITY, RESET, GET_ACTIVITIES, SORT_BY_NAME, SORT_BY_POPULATION, FILTER_CONTINENT, DELETE_ACTIVITY } from "./actionsTypes";
+import { GET_FILMS, GET_COUNTRY_BY_NAME, NEXT_PAGE, PREV_PAGE, NUMBER_PAGE, GET_FILM_BY_ID, CLEAN_DETAIL, POST_ACTIVITY, RESET, GET_ACTIVITIES, SORT_BY_NAME, SORT_BY_POPULATION, FILTER_CONTINENT, DELETE_ACTIVITY } from "./actionsTypes";
 
 const endPFilm = "http://localhost:3001/film";
 const endPActivities = "http://localhost:3001/activities";
 
-export const getCountries = () => {
+export const getFilms = () => {
     return async (dispatch) => {
         try {
             const { data } = await axios.get(`${endPFilm}`);
-            return dispatch({ type: GET_COUNTRIES, payload: data})
+            return dispatch({ type: GET_FILMS, payload: data})
         } catch (error) {
             alert("Countries couldn't be loaded");           
         }
