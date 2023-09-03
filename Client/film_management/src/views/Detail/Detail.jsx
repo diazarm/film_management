@@ -37,12 +37,11 @@ const Detail = () => {
         <div className={stylesDetail.divDetail}>
             <div className={stylesDetail.divCountry}>
                 <div className={stylesDetail.divImgCountry}>
-              
                 <button className={stylesDetail.deleteButton} onClick={handleDelete}>
                     X
              </button>
              {showConfirmDialog && (<div className={stylesDetail.confirmDialog}>
-                <p>¿Estás seguro de que deseas eliminar este elemento?</p>
+                 <p>¿Estás seguro de que deseas eliminar este elemento?</p>
                 <button onClick={confirmDelete}>Sí</button>
                 <button onClick={() => setShowConfirmDialog(false)}>No</button>
                 </div>
