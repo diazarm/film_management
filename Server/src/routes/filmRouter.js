@@ -2,7 +2,6 @@ const {Router} = require('express');
 const  {getFilmHandler,deleteIdHandler, 
         putIdHandler, postFilmHandler, getIdFilmHandler
        } = require('../handlers/filmGetHandler');
-//const { filmApi } = require('../controllers/getController');
 
 const filmRouter = Router();
 
