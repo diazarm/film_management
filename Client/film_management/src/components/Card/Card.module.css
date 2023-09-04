@@ -1,10 +1,10 @@
 .div {
-    width: 18vw;
-    height: 40vh;
-    border: solid rgba(0, 0, 0, 0.584);
+    width: 400px;
+    height: 500px;
+    border: solid rgba(240, 127, 7, 0.584);
     border-radius: 1em;
-    margin-bottom: 0.5em;
-    background-color: rgba(50, 91, 225, 0.355);
+    margin-bottom: 1.5em;
+    background-color: rgba(140, 140, 141, 0.793);
 }
 
 .div:hover, .div:hover .img {
@@ -13,7 +13,7 @@
 }
 
 .div:hover .h2, .div:hover .h3 {
-    text-shadow: 2px 0px 10px #ffffff83;
+    text-shadow: 2px 0px 10px #f10e0e83;
     transition-delay: 0.1s;
 }
 
@@ -21,7 +21,7 @@
     margin-top: 1em;
     width: 10vw;
     height: 15vh;
-    border: solid rgba(0, 0, 0, 0.625);
+    border: solid rgba(10, 10, 10, 0.625);
     border-radius: 1em;
 }
 

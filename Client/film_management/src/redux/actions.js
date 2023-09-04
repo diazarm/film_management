@@ -1,8 +1,8 @@
 import axios from "axios";
-import { GET_FILMS, GET_COUNTRY_BY_NAME, NEXT_PAGE, PREV_PAGE, NUMBER_PAGE, GET_FILM_BY_ID, CLEAN_DETAIL, POST_ACTIVITY, RESET, GET_ACTIVITIES, SORT_BY_NAME, SORT_BY_POPULATION, FILTER_CONTINENT, DELETE_FILM } from "./actionsTypes";
+import { GET_FILMS, NEXT_PAGE, PREV_PAGE, NUMBER_PAGE, MODIFY_FILM, GET_FILM_BY_ID, CLEAN_DETAIL, POST_FILM, RESET, DELETE_FILM } from "./actionsTypes";
 
 const endPFilm = "http://localhost:3001/film";
-const endPActivities = "http://localhost:3001/activities";
+// const endPActivities = "http://localhost:3001/activities";
 
 export const getFilms = () => {
     return async (dispatch) => {
@@ -15,16 +15,6 @@ export const getFilms = () => {
     };
 };
 
-export const getCountryByName = (name) => {
-    return async (dispatch) => {
-        try {
-            const { data } = await axios.get(`${endPFilm}/?name=${name}`);
-            return dispatch({ type: GET_COUNTRY_BY_NAME, payload: data})
-        } catch (error) {
-            alert("Try another name please");           
-        }
-    };
-};
 
 export const getFilmById = (id) => {
     return async (dispatch) => {
@@ -37,25 +27,14 @@ export const getFilmById = (id) => {
     };
 };
 
-export const postActivity = (form) => {
+export const postFilm = (form) => {
     return async (dispatch) => {
         try {
-            const { data } = await axios.post(`${endPActivities}`,form);
+            const { data } = await axios.post(`${endPFilm}`,form);
             if (!data) throw Error();
-            return dispatch({ type: POST_ACTIVITY, payload: data });
+            return dispatch({ type: POST_FILM, payload: data });
         } catch (error) {
             alert("The activity already exists")
-        }
-    };
-};
-
-export const getActivities = () => {
-    return async (dispatch) => {
-        try {
-            const { data } = await axios.get(`${endPActivities}`);
-            return dispatch({ type: GET_ACTIVITIES, payload: data})
-        } catch (error) {
-            alert("No activities available");           
         }
     };
 };
@@ -72,6 +51,15 @@ export const deleteFilm = (id) => {
     };
 };
 
+export const modifyFilm = (id, payload)=>{
+    return async function(dispatch){
+       const response=await axios.put(`${endPFilm}/${id}`, payload)
+      return dispatch({
+        type:'MODIFY_FILM',
+        payload: response
+      });
+     }
+ };
 
 export const cleanDetail = () => {
     return {
@@ -79,26 +67,6 @@ export const cleanDetail = () => {
     };
 };
 
-export const sortByName = (value) => {
-    console.log("esto es value " + value)
-    return {
-        type: SORT_BY_NAME,
-        payload: value,
-    };
-};
-export const sortByPopulation = (value) => {
-        return {
-        type: SORT_BY_POPULATION,
-        payload: value,
-    };
-};
-
-export const filterContinent = (value) => {
-    return {
-        type: FILTER_CONTINENT,
-        payload: value,
-    };
-};
 
 export const nextPage = () => {
     return {

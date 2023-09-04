@@ -2,11 +2,11 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { postFilm } from "../../redux/actions";
 import validationForm from "../../helpers/Validations/ValidationForm";
-import stylesForm from "./Form.module.css";
-import { NavLink } from "react-router-dom";
+import stylesForm from "./ModifyForm.module.css";
+import PropTypes from 'prop-types';
 
 
-const Form = () => {
+const ModifyForm = ({id}) => {
     const [form, setForm] = useState({
         title: "",
         year: "",
@@ -31,14 +31,16 @@ const Form = () => {
     const handleSubmit = (event) => {
         event.preventDefault(); // Evita que el formulario se envíe por defecto
         dispatch(postFilm(form));
-        alert("Your Movie has been created");
+        alert("Your movie has been modificated");
         // Puedes realizar alguna redirección aquí si es necesario
     };
-
+    
     return (
         <div className={stylesForm.div}>
+            {console.log("aquiiiii" , id)}
             <div className={stylesForm.divForm}>
-            <p className={stylesForm.title}>Create your movie!</p>
+            <p className={stylesForm.title}>Modify movie from database</p>
+            <p className={stylesForm.id}>ID: {id}</p>
                 <form onSubmit={handleSubmit} className={stylesForm.form}>
                     <div className={stylesForm.divAct}>
                         <label htmlFor="title" className={stylesForm.labelAct}>Title</label>
@@ -65,17 +67,17 @@ const Form = () => {
                         <input type="text" name="image" className={stylesForm.inputAct} placeholder="image url..." value={form.image} onChange={handleChange} />
                         {errors.image && <span className={stylesForm.spans}>{errors.image}</span>}
                     </div>
-                    <button className={stylesForm.btnSubmit} type="submit" disabled={Object.keys(errors).length > 0}>create movie in database</button>
+                    <button className={stylesForm.btnSubmit} type="submit" disabled={Object.keys(errors).length > 0}>Modify movie in database</button>
                 </form>
-                <NavLink to="/modify">
-                <button className={`${stylesForm.btnmodify}`} >
-                Modify this movie from database
-        </button>
-        </NavLink>
+               
             </div>
         </div>
     );
 };
 
-export default Form;
+ModifyForm.propTypes = {
+    id: PropTypes.string.isRequired, // O el tipo de dato adecuado para tu ID
+  };
+  
+export default ModifyForm;
 

@@ -4,11 +4,12 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import { cleanDetail, getFilmById, deleteFilm } from "../../redux/actions";
 import noPhoto from "../../assets/images/no_photo.webp"
-
+import Form from "../Form/Form";
+import ModifyForm from "../ModifyForm/ModifyForm";
 
 const Detail = () => {
     const dispatch = useDispatch();
-    const nave = useNavigate();
+    const navigate = useNavigate();
     const { id } = useParams();
     const filmDetail = useSelector((state) => state.filmDetail);
     const [showConfirmDialog, setShowConfirmDialog] = useState(false);
@@ -22,17 +23,15 @@ const Detail = () => {
     
     const confirmDelete = () => {
         dispatch(deleteFilm(filmDetail.id));
-        //Aqui chat cgpt 
-        nave("/home");
+        dispatch(cleanDetail());
+        navigate("/home")
       };
 
     const handleDelete = () => {
         setShowConfirmDialog(true);
     };
 
-      
-    
-
+     
     return (
         <div className={stylesDetail.divDetail}>
             <div className={stylesDetail.divCountry}>
@@ -40,12 +39,24 @@ const Detail = () => {
                 <button className={stylesDetail.deleteButton} onClick={handleDelete}>
                     X
              </button>
-             {showConfirmDialog && (<div className={stylesDetail.confirmDialog}>
-                 <p>¿Estás seguro de que deseas eliminar este elemento?</p>
-                <button onClick={confirmDelete}>Sí</button>
-                <button onClick={() => setShowConfirmDialog(false)}>No</button>
-                </div>
-            )}
+             {showConfirmDialog && (
+  <div className={stylesDetail.confirmDialog}>
+    {isNaN(id) ? (
+        <>
+        <p>Are you sure you want to delete this card??</p>
+        <button onClick={confirmDelete}>Yes</button>
+        <button onClick={() => setShowConfirmDialog(false)}>No</button>
+      </>
+    ) : (
+        <>
+        <p>Sorry, they can only be deleted in the database</p>
+        <button onClick={() => setShowConfirmDialog(false)}>Close</button>
+      </>
+    )}
+  </div>
+)}
+
+
                 {(!filmDetail.image || filmDetail.image === "none") ? <img  src={noPhoto} alt={filmDetail.image}/> : 
             <img  src={`https://image.tmdb.org/t/p/w500${filmDetail.image}`} alt={filmDetail.image}/>}
                     <h2 className={stylesDetail.h2}>ID | {filmDetail.id}</h2>
@@ -55,8 +66,9 @@ const Detail = () => {
                     <h2 className={stylesDetail.h2}>OVERVIEW | {filmDetail.overview}</h2>
                     
                 </div>
+                <Form/>
             </div>
-                
+        <ModifyForm id={id} />
         </div>
     );
 };
