@@ -12,7 +12,6 @@ const Home = () => {
         if (!countriesCopy.length) {
             dispatch(getFilms());
         }
-      
     }, [countriesCopy.length, dispatch]);
 
     let first = (numPage - 1) * 9;

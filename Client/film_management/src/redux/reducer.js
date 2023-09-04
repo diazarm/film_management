@@ -5,6 +5,7 @@ const initialState = {
     countriesCopy: [],
     filmDetail: {},
     activities: [],
+    modifyFilm: {},
     numPage: 1,
 };
 
@@ -49,10 +50,9 @@ const reducer = (state = initialState, { type, payload }) => {
                 activities: [...state.activities, payload],
             };
         case MODIFY_FILM:
-            return {
+                return {
                 ...state,
-                activities: [...state.activities, payload],
-            }
+            };
         case FILTER_ACTIVITY:
             return {
                 ...state,

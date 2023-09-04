@@ -3,53 +3,56 @@
     background-repeat: no-repeat;
     background-size: cover;
     min-height: 100vh;
+    display: flex;
+    justify-content: center; /* Centra horizontalmente el contenido */
+    align-items: center; /* Centra verticalmente el contenido */
   }
   
-.divCountry {
+  .divCountry {
     display: flex;
     flex-direction: row;
-}
-
-.divImgCountry {
+  }
+  
+  .divImgCountry {
     margin: 2em 0 0 2em;
-    font-family:Georgia, 'Times New Roman', Times, serif;
+    font-family: Georgia, 'Times New Roman', Times, serif;
     color: #ffffff;
-    text-shadow: 2px 0 4px  rgb(0, 0, 0);
+    text-shadow: 2px 0 4px rgb(0, 0, 0);
     background-color: rgba(211, 178, 101, 0.351);
     border-radius: 2em;
-    width: 35%;
+    width: 65%;
     position: relative;
-}
-
-.divImgCountry img {
+  }
+  
+  .divImgCountry img {
     height: 32vh;
     width: 22vw;
     margin-top: 1em;
     border-radius: 1.5em;
     box-shadow: 1px 1px 1px 3px rgb(249, 235, 115);
-}
-
-.deleteButton{
+  }
+  
+  .deleteButton {
     position: absolute;
-    top: 1em; 
-    right: 1em; 
-    background-color: #ff0000; 
-    color: #fff; 
+    top: 1em;
+    right: 1em;
+    background-color: #ff0000;
+    color: #fff;
     border: none;
-    border-radius: 50%; 
-    width: 32px; 
-    height: 32px; 
+    border-radius: 50%;
+    width: 32px;
+    height: 32px;
     cursor: pointer;
     display: flex;
     justify-content: center;
     align-items: center;
     font-weight: bold;
-    font-size: 20px; 
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8); 
-    z-index: 1; 
-}
-
-.divActCountry {
+    font-size: 20px;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+    z-index: 1;
+  }
+  
+  .divActCountry {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -57,9 +60,9 @@
     margin: 2em 0 0 2em;
     border-radius: 2em;
     width: 44%;
-}
-
-.divAct {
+  }
+  
+  .divAct {
     background-color: rgba(53, 115, 15, 0.655);
     font-style: italic;
     width: 90%;
@@ -68,24 +71,60 @@
     margin-bottom: 0.5em;
     color: white;
     text-shadow: 1px 1px black;
-
-}
-
-.h3 {
+  }
+  
+  .h3 {
     font-size: 3.25vh;
-    color:white;
+    color: white;
     text-shadow: 1px 1px black;
-}
-
-.h4 {
+  }
+  
+  .h4 {
     display: inline-flex;
     flex-direction: row;
     gap: 4em;
     font-size: 2.75vh;
     margin-top: -1em;
-}
-
-.h2{
-    color:white;
+  }
+  
+  .h2 {
+    color: white;
     text-shadow: 1px 2px black;
-}
+  }
+  
+  .formButtons {
+    margin-top: 0px;
+    width: 30vw;
+    border-radius: 1em;
+    background-color: rgba(206, 149, 63, 0.714);
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1em;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+    transition: background-color 0.3s ease;
+    cursor: pointer;
+    margin-left: 2em;
+    margin-bottom: 5px;
+    margin-right: 2em;
+  }
+  
+  .formButtons:hover {
+    background-color: rgba(206, 149, 63, 0.9);
+  }
+  
+  .formButtons button {
+    border: none;
+    background: none;
+    color: inherit;
+    font-size: 3vh;
+    font-weight: bold;
+    cursor: pointer;
+    transition: color 0.3s ease;
+  }
+  
+  .formButtons button:hover {
+    color: #ff9900;
+  }
+  

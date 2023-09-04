@@ -1,8 +1,7 @@
 import axios from "axios";
-import { GET_FILMS, NEXT_PAGE, PREV_PAGE, NUMBER_PAGE, MODIFY_FILM, GET_FILM_BY_ID, CLEAN_DETAIL, POST_FILM, RESET, DELETE_FILM } from "./actionsTypes";
+import { GET_FILMS, NEXT_PAGE, PREV_PAGE, NUMBER_PAGE, MODIFY_FILM , GET_FILM_BY_ID, CLEAN_DETAIL, POST_FILM, RESET, DELETE_FILM } from "./actionsTypes";
 
 const endPFilm = "http://localhost:3001/film";
-// const endPActivities = "http://localhost:3001/activities";
 
 export const getFilms = () => {
     return async (dispatch) => {
@@ -10,7 +9,7 @@ export const getFilms = () => {
             const { data } = await axios.get(`${endPFilm}`);
             return dispatch({ type: GET_FILMS, payload: data})
         } catch (error) {
-            alert("Countries couldn't be loaded");           
+            alert("Couldn't load the movie");           
         }
     };
 };
@@ -18,11 +17,14 @@ export const getFilms = () => {
 
 export const getFilmById = (id) => {
     return async (dispatch) => {
-        try {
+        try {console.log("antes del console");
             const { data } = await axios.get(`${endPFilm}/${id}`);
+        console.log("despues del console");
+            
+            console.log("aqui viaja desde action", data);
             return dispatch({ type: GET_FILM_BY_ID, payload: data})
         } catch (error) {
-            alert("Couldn't load the detail of the movie");           
+            alert("Couldn't load the detail* of the movie");           
         }
     };
 };
@@ -34,7 +36,7 @@ export const postFilm = (form) => {
             if (!data) throw Error();
             return dispatch({ type: POST_FILM, payload: data });
         } catch (error) {
-            alert("The activity already exists")
+            alert("The movie already exists")
         }
     };
 };
@@ -52,13 +54,15 @@ export const deleteFilm = (id) => {
 };
 
 export const modifyFilm = (id, payload)=>{
-    return async function(dispatch){
-       const response=await axios.put(`${endPFilm}/${id}`, payload)
-      return dispatch({
-        type:'MODIFY_FILM',
-        payload: response
-      });
-     }
+    return async (dispatch) =>{
+        try {
+        console.log("desde action sale: ", payload);
+       const {data} = await axios.put(`${endPFilm}/${id}`, payload)
+       return dispatch({type: MODIFY_FILM, payload: data});
+     }catch (error) {
+        alert("The movie already exists")
+    }
+    }
  };
 
 export const cleanDetail = () => {

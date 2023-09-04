@@ -29,10 +29,10 @@ const Form = () => {
     };
 
     const handleSubmit = (event) => {
-        event.preventDefault(); // Evita que el formulario se envíe por defecto
+        event.preventDefault(); 
         dispatch(postFilm(form));
         alert("Your Movie has been created");
-        // Puedes realizar alguna redirección aquí si es necesario
+        window.location.reload()
     };
 
     return (
