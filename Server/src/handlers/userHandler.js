@@ -4,11 +4,10 @@ const {loginApi} = require('../controllers/userController')
 const postUserHandler = async (req, res) => {
     try {
       const { user, password } = req.body;
-      console.log("te envio", user, password);
       const newUser = await createNewUser(user, password);
       res.status(201).json(newUser); // Enviar el usuario recién creado en la respuesta
     } catch (error) {
-        console.log("paso por 400");
+
       res.status(400).json({ error: error.message });
     }
   };
@@ -25,5 +24,28 @@ const postUserHandler = async (req, res) => {
   };
   
 
+const postLogHandler = async (req, res) => {
+    try {
+      const { user, password } = req.body;
+      console.log("llego a back", user);
+      const response = await loginApi(user); // Pasar el nombre como argumento
+      console.log("pass de afuera", password);
+      console.log("el pass hash es", response.password);
+      const match = await bcrypt.compare(password, response.password);
+      //res.status(200).json(match);//response es el usuario encontrado
+      if (match) {
+        // Autenticación exitosa
+        res.json({ success: true, message: 'Autenticación exitosa' });
+      } else {
+        // Autenticación fallida
+        res.json({ success: false, message: 'Autenticación fallida' });
+      }
+    } catch (error) {
 
-module.exports = {postUserHandler, getUserHandler}
+      res.status(400).json({ error: error.message });
+    }
+  };
+  
+  
+
+module.exports = {postUserHandler, getUserHandler, postLogHandler}
