@@ -1,7 +1,12 @@
 import axios from "axios";
 import { GET_FILMS, NEXT_PAGE, PREV_PAGE, NUMBER_PAGE, MODIFY_FILM , GET_FILM_BY_ID, CLEAN_DETAIL, POST_FILM, RESET, DELETE_FILM, LOGIN_SUCCESS, LOGIN_FAILURE, REGISTER_SUCCESS, REGISTER_FAILURE } from "./actionsTypes";
+import bcrypt from 'bcryptjs';
 
 const endPFilm = "http://localhost:3001/film";
+const endPRegister = "http://localhost:3001";
+const endLogin = "http://localhost:3001/login";
+
+
 
 export const getFilms = () => {
     return async (dispatch) => {
@@ -95,27 +100,43 @@ export const reset = () => {
     };
 };
 
-export const login = (credentials) => {
-    return async (dispatch) => {
-      try {
-        const response = await axios.post('/api/login', credentials);
-  
-        // Si las credenciales son correctas, actualiza el estado con el token
-        dispatch({
-          type: LOGIN_SUCCESS,
-          payload: response.data.token,
-        });
-      } catch (error) {
-        // Si las credenciales son incorrectas, maneja el error
-        dispatch({
-          type: LOGIN_FAILURE,
-          payload: 'Credenciales incorrectas',
-        });
-      }
-    };
-  };
+export const ingreso = (credentials) => {
+  console.log("clave de login", credentials.password);
+  return async (dispatch) => {
+    try {
+      // Cifra la contraseña de forma asincrónica
+      const hashedPassword = await bcrypt.hash(credentials.password, 10);
 
-  const endPRegister = "http://localhost:3001";
+      
+      // Actualiza las credenciales con la contraseña cifrada
+      const credentialsWithHashedPassword = {
+        ...credentials,
+        password: hashedPassword,
+      };
+      
+      const jsonData = JSON.stringify(credentialsWithHashedPassword);
+      console.log("enviado desde login", jsonData);
+      const response = await axios.post(`${endLogin}`, jsonData, {
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+
+      // Si las credenciales son correctas, actualiza el estado con el token
+      if (!response) throw Error();
+      return dispatch({
+        type: LOGIN_SUCCESS,
+        payload: response.data.token,
+      });
+    } catch (error) {
+      dispatch({
+        type: LOGIN_FAILURE,
+        payload: 'Credenciales incorrectas',
+      });
+    }
+  };
+};
+
 
   export const register = (formData) => {
     console.log("envia por action", formData);
@@ -127,7 +148,6 @@ export const login = (credentials) => {
             'Content-Type': 'application/json', // Indica que estás enviando JSON
           },
         });
-  
         if (!response) throw Error();
         return dispatch({
           type: REGISTER_SUCCESS,

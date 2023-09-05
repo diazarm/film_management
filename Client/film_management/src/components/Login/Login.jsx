@@ -1,10 +1,16 @@
 import { useState } from 'react';
 import './login.css'; 
 import { NavLink } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { ingreso } from "../../redux/actions";
 
 const Login = () => {
+
+  const dispatch = useDispatch();
+
+  
   const [formData, setFormData] = useState({
-    username: '',
+    user: '',
     password: '',
   });
 
@@ -18,7 +24,8 @@ const Login = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Aquí puedes agregar la lógica para enviar los datos de inicio de sesión al servidor
+    dispatch (ingreso(formData))
+
     console.log('Datos de inicio de sesión enviados:', formData);
   };
 
@@ -27,12 +34,12 @@ const Login = () => {
       <h2>Log in</h2>
       <form onSubmit={handleSubmit}>
         <div>
-          <label htmlFor="username">User:</label>
+          <label htmlFor="user">User:</label>
           <input
             type="text"
-            id="username"
-            name="username"
-            value={formData.username}
+            id="user"
+            name="user"
+            value={formData.user}
             onChange={handleChange}
             required
           />
@@ -51,7 +58,7 @@ const Login = () => {
         <button type="submit">Submit</button>
       </form>
       <NavLink to="/checkin">
-      <button>check in</button>
+      <button>Register</button>
       </NavLink>
     </div>
   );

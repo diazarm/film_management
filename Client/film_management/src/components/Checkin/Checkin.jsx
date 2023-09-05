@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import './login.css'; 
 import { useDispatch } from "react-redux";
+import { NavLink } from "react-router-dom";
 import {register} from "../../redux/actions"
 
 const Checkin = () => {
@@ -23,7 +24,8 @@ const Checkin = () => {
     e.preventDefault();
     dispatch(register(formData));
     alert("Successful registration");
-    //window.location.reload()
+    window.location.reload()
+
   };
 
   return (
@@ -54,6 +56,7 @@ const Checkin = () => {
         </div>
         <button type="submit">Register</button>
       </form>
+      <NavLink to="/">Return to main page</NavLink>
     </div>
   );
 };
