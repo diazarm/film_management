@@ -1,10 +1,13 @@
 import { useState } from 'react';
 import './login.css'; 
-import { NavLink } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import {register} from "../../redux/actions"
 
-const Login = () => {
+const Checkin = () => {
+  const dispatch = useDispatch();
+
   const [formData, setFormData] = useState({
-    username: '',
+    user: '',
     password: '',
   });
 
@@ -18,27 +21,28 @@ const Login = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Aquí puedes agregar la lógica para enviar los datos de inicio de sesión al servidor
-    console.log('Datos de inicio de sesión enviados:', formData);
+    dispatch(register(formData));
+    alert("Successful registration");
+    //window.location.reload()
   };
 
   return (
     <div className="login-container">
-      <h2>Log in</h2>
+      <h2>Check-in</h2>
       <form onSubmit={handleSubmit}>
         <div>
-          <label htmlFor="username">User:</label>
+          <label htmlFor="user">New user:</label>
           <input
             type="text"
-            id="username"
-            name="username"
-            value={formData.username}
+            id="user"
+            name="user"
+            value={formData.user}
             onChange={handleChange}
             required
           />
         </div>
         <div>
-          <label htmlFor="password">Password:</label>
+          <label htmlFor="password">New Password:</label>
           <input
             type="password"
             id="password"
@@ -48,13 +52,10 @@ const Login = () => {
             required
           />
         </div>
-        <button type="submit">Submit</button>
+        <button type="submit">Register</button>
       </form>
-      <NavLink to="/checkin">
-      <button>check in</button>
-      </NavLink>
     </div>
   );
 };
 
-export default Login;
+export default Checkin;

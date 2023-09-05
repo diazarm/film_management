@@ -1,5 +1,5 @@
 import axios from "axios";
-import { GET_FILMS, NEXT_PAGE, PREV_PAGE, NUMBER_PAGE, MODIFY_FILM , GET_FILM_BY_ID, CLEAN_DETAIL, POST_FILM, RESET, DELETE_FILM } from "./actionsTypes";
+import { GET_FILMS, NEXT_PAGE, PREV_PAGE, NUMBER_PAGE, MODIFY_FILM , GET_FILM_BY_ID, CLEAN_DETAIL, POST_FILM, RESET, DELETE_FILM, LOGIN_SUCCESS, LOGIN_FAILURE, REGISTER_SUCCESS, REGISTER_FAILURE } from "./actionsTypes";
 
 const endPFilm = "http://localhost:3001/film";
 
@@ -95,5 +95,47 @@ export const reset = () => {
     };
 };
 
+export const login = (credentials) => {
+    return async (dispatch) => {
+      try {
+        const response = await axios.post('/api/login', credentials);
+  
+        // Si las credenciales son correctas, actualiza el estado con el token
+        dispatch({
+          type: LOGIN_SUCCESS,
+          payload: response.data.token,
+        });
+      } catch (error) {
+        // Si las credenciales son incorrectas, maneja el error
+        dispatch({
+          type: LOGIN_FAILURE,
+          payload: 'Credenciales incorrectas',
+        });
+      }
+    };
+  };
 
+  const endPRegister = "http://localhost:3001";
 
+  export const register = (formData) => {
+    console.log("envia por action", formData);
+    return async (dispatch) => {
+      try {
+        const jsonData = JSON.stringify(formData); // Convierte el objeto a JSON
+        const response = await axios.post(`${endPRegister}`, jsonData, {
+          headers: {
+            'Content-Type': 'application/json', // Indica que estás enviando JSON
+          },
+        });
+  
+        if (!response) throw Error();
+        return dispatch({
+          type: REGISTER_SUCCESS,
+          payload: response.data,
+        });
+      } catch (error) {
+        alert("No se pudo registrar");
+      }
+    };
+  };
+  
