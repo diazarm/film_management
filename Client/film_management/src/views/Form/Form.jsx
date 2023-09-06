@@ -67,11 +67,9 @@ const Form = () => {
                     </div>
                     <button className={stylesForm.btnSubmit} type="submit" disabled={Object.keys(errors).length > 0}>create movie in database</button>
                 </form>
-                <NavLink to="/modify">
-                <button className={`${stylesForm.btnmodify}`} >
-                Modify this movie from database
-        </button>
-        </NavLink>
+                    <NavLink to="/modify">
+                        <button className={`${stylesForm.btnmodify}`}>Modify this movie from database</button>
+                    </NavLink>
             </div>
         </div>
     );

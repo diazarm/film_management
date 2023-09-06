@@ -2,11 +2,10 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { modifyFilm } from "../../redux/actions";
 import stylesForm from "./ModifyForm.module.css";
-//import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 
 const ModifyForm = ({ id }) => {
   const [form, setForm] = useState({
-    id: "",
     title: "",
     year: "",
     language: "",
@@ -22,7 +21,7 @@ const ModifyForm = ({ id }) => {
       [event.target.name]: event.target.value,
     });
   };
-
+  
   const handleSubmit = (event) => {
     event.preventDefault();
     console.log("aqui desde handler", form);
@@ -30,7 +29,11 @@ const ModifyForm = ({ id }) => {
     window.location.reload()
     alert("Your movie has been modified");
   };
-
+  
+  ModifyForm.propTypes = {
+    id: PropTypes.string.isRequired,
+  }
+  
   return (
     <div className={stylesForm.div}>
       <div className={stylesForm.divForm}>
@@ -60,13 +63,11 @@ const ModifyForm = ({ id }) => {
           <button className={stylesForm.btnSubmit} type="submit">Modify movie in database</button>
         </form>
       </div>
+      
     </div>
   );
 };
 
-// ModifyForm.propTypes = {
-//   id: PropTypes.string.isRequired,
-// };
 
 export default ModifyForm;
 

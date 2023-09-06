@@ -6,6 +6,7 @@ import { cleanDetail, getFilmById, deleteFilm } from "../../redux/actions";
 import noPhoto from "../../assets/images/no_photo.webp";
 import Form from "../Form/Form";
 import ModifyForm from "../ModifyForm/ModifyForm";
+import Loading from "../../components/LoadingAnimation/LoadingAnimation";
 
 const Detail = () => {
   const dispatch = useDispatch();
@@ -15,17 +16,22 @@ const Detail = () => {
   const [showConfirmDialog, setShowConfirmDialog] = useState(false);
   const [isCreating, setIsCreating] = useState(false);
   const [isModifying, setIsModifying] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
+    setTimeout(() => {
+      setIsLoading(false); // Oculta el componente de carga después de un tiempo
+    }, 2000)
     dispatch(getFilmById(id));
     return () => {
       dispatch(cleanDetail());
     };
   }, [dispatch, id]);
-
+  
   const confirmDelete = () => {
     dispatch(deleteFilm(filmDetail.id));
     dispatch(cleanDetail());
+    alert("Delete movie")
     navigate("/home");
   };
 
@@ -45,6 +51,7 @@ const Detail = () => {
 
   return (
       <div className={stylesDetail.divDetail}>
+        {isLoading ? <Loading/> :
       <div className={stylesDetail.divCountry}>
         <div className={stylesDetail.divImgCountry}>
         <div>
@@ -91,7 +98,7 @@ const Detail = () => {
       </div>
         {isCreating && <Form />}
         {isModifying && <ModifyForm id={id} />}
-    </div>
+    </div>}
     </div>
   );
 };

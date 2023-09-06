@@ -22,7 +22,7 @@ export const getFilms = () => {
 
 export const getFilmById = (id) => {
     return async (dispatch) => {
-        try {console.log("antes del console");
+        try {console.log("antes del console", id);
             const { data } = await axios.get(`${endPFilm}/${id}`);
         console.log("despues del console");
             

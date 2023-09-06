@@ -1,14 +1,24 @@
 import stylesHome from "./Home.module.css";
 import CardsContainer from "../../components/CardsContainer/CardsContainer";
 import Pagination from "../../components/Pagination/Pagination";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getFilms } from "../../redux/actions";
+import Loading from "../../components/LoadingAnimation/LoadingAnimation";
+
+
+
 const Home = () => {
+
     const dispatch = useDispatch();
     const { countries, numPage, countriesCopy } = useSelector((state) => state);
+    const [isLoading, setIsLoading] = useState(true);
+
 
     useEffect(() => {
+        setTimeout(() => {
+            setIsLoading(false); // Oculta el componente de carga después de un tiempo
+          }, 2000)
         if (!countriesCopy.length) {
             dispatch(getFilms());
         }
@@ -20,14 +30,18 @@ const Home = () => {
     let currentCountries = countries.slice(first, second);
 
     return (
+        <div>
+        {isLoading ? <Loading/> :
         <div className={stylesHome.divHome}>
             <div className={stylesHome.divPag}>
                 <Pagination pages={pages} />
             </div>
             <div className={stylesHome.divCards}>
                 <CardsContainer currentCountries={currentCountries} />
-            </div>
+            </div> 
         </div>
+        }
+    </div>
     )
 };
 

@@ -1,6 +1,6 @@
 import { Link, useNavigate } from "react-router-dom";
 import stylesNavBar from "./NavBar.module.css";
-import HomeIcon  from "../../assets/images/HomeIcon.png";
+import HomeIcon  from "../../assets/images/cartoon.gif";
 
 
 const NavBar = () => {
@@ -8,6 +8,7 @@ const NavBar = () => {
 
     const handleHomeClick = () => {
         navigate('/home')
+        window.location.reload()
     };
 
     return (
