@@ -39,12 +39,6 @@ const filmApi = async () => {
   }
 };
 
-
-//getMovies().then(movieOptions => {
-  //  console.log(movieOptions);
-  //});
-
-
 //muestra de acuerdo al id en api y bdd
 const getIdController = async (id, source) => {
   const urlDataArray = [];
@@ -76,9 +70,6 @@ const createNewFilm = async(title, year,language,overview, image, created) =>{
 };
 
 const putDbFilm = async (id, dataToUpdate) => {
-  console.log("pasa por aqui", id);
-
-   
     try {
       const movie = await Films.findByPk(id);
       if (!movie) {

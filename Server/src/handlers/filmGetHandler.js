@@ -1,10 +1,9 @@
 const {createNewFilm,  filmApi, putDbFilm, getIdController} = require('../controllers/getController');
 const deleteFilmController = require ('../controllers/deleteFilmController')
 
-//  este es el handler de /dogs (muestra perro)
+
 
 const getFilmHandler = async(req, res) =>{
-    //const {name} = req.query;
     try {
         const response = await filmApi()
         res.status(200).json(response)
@@ -52,11 +51,6 @@ const putIdHandler = async(req, res) =>{
   }
 };
  
-
-
-
-
-
 
 // post/film crea una pelicula    
     
