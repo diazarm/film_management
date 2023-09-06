@@ -41,10 +41,12 @@ const filmApi = async () => {
 
 //muestra de acuerdo al id en api y bdd
 const getIdController = async (id, source) => {
-  const urlDataArray = [];
-  const urlData = (await axios.get(`https://api.themoviedb.org/3/movie/${id}?api_key=${API_KEY}`)).data;
-  urlDataArray.push(urlData)
-  if (source === "api") {
+    if (source ==="bdd") {
+    return await Films.findByPk(id);} 
+      else{  
+    const urlDataArray = [];
+    const urlData = (await axios.get(`https://api.themoviedb.org/3/movie/${id}?api_key=${API_KEY}`)).data;
+    urlDataArray.push(urlData)
     const newArray = urlDataArray.map(apiFiltrada => ({
       id: apiFiltrada.id,
       image: "https://image.tmdb.org/t/p/w500" + apiFiltrada.backdrop_path,
@@ -56,8 +58,6 @@ const getIdController = async (id, source) => {
       created: false,
     }));
     return newArray[0];
-  } else {
-    return await Films.findByPk(id); 
   }
 };
 
