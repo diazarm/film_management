@@ -15,7 +15,7 @@ const NavBar = () => {
         <div className={stylesNavBar.divNav}>
             <Link to='/home'>
                 <button className={stylesNavBar.btn} onClick={handleHomeClick}>
-                    <img src={HomeIcon} alt="HomeIcon" className={stylesNavBar.img}/> Home </button>
+                    <img src={HomeIcon} alt="HomeIcon" className={stylesNavBar.img}/> Back to home </button>
             </Link>
         </div>
     )

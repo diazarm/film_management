@@ -14,14 +14,14 @@ const Home = () => {
     const { countries, numPage, countriesCopy } = useSelector((state) => state);
     const [isLoading, setIsLoading] = useState(true);
 
-
     useEffect(() => {
-        setTimeout(() => {
-            setIsLoading(false); // Oculta el componente de carga después de un tiempo
-          }, 2000)
         if (!countriesCopy.length) {
             dispatch(getFilms());
         }
+        setTimeout(() => {
+            setIsLoading(false); // Oculta el componente de carga después de un tiempo
+          }, 2000)
+      
     }, [countriesCopy.length, dispatch]);
 
     let first = (numPage - 1) * 9;
