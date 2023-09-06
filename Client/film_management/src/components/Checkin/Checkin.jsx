@@ -8,6 +8,7 @@ const Checkin = () => {
   const dispatch = useDispatch();
 
   const [formData, setFormData] = useState({
+    id: '',
     user: '',
     password: '',
   });
@@ -25,12 +26,12 @@ const Checkin = () => {
     dispatch(register(formData));
     alert("Successful registration");
     window.location.reload()
-
+    console.log('Datos de registro enviados:', formData);
   };
 
   return (
     <div className="login-container">
-      <h2>Check-in</h2>
+      <h2>Sign up!</h2>
       <form onSubmit={handleSubmit}>
         <div>
           <label htmlFor="user">New user:</label>

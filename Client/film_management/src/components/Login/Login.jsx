@@ -58,7 +58,7 @@ const Login = () => {
         <button type="submit">Submit</button>
       </form>
       <NavLink to="/checkin">
-      <button>Register</button>
+      <button>Sign up</button>
       </NavLink>
     </div>
   );

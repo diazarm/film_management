@@ -2,10 +2,11 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { modifyFilm } from "../../redux/actions";
 import stylesForm from "./ModifyForm.module.css";
-import PropTypes from 'prop-types';
+//import PropTypes from 'prop-types';
 
 const ModifyForm = ({ id }) => {
   const [form, setForm] = useState({
+    id: "",
     title: "",
     year: "",
     language: "",
@@ -63,9 +64,9 @@ const ModifyForm = ({ id }) => {
   );
 };
 
-ModifyForm.propTypes = {
-  id: PropTypes.string.isRequired,
-};
+// ModifyForm.propTypes = {
+//   id: PropTypes.string.isRequired,
+// };
 
 export default ModifyForm;
 
