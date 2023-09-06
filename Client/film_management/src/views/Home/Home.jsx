@@ -33,6 +33,8 @@ const Home = () => {
         <div>
         {isLoading ? <Loading/> :
         <div className={stylesHome.divHome}>
+            <p className={stylesHome.pageTitle}>Welcome to Pop Corn!</p>
+
             <div className={stylesHome.divPag}>
                 <Pagination pages={pages} />
             </div>

@@ -5,3 +5,40 @@
     background-repeat: no-repeat;
     background-attachment: fixed;
 }
+
+@keyframes show {
+    from{
+        opacity : 0;
+        scale : 25%;
+    }
+    to{
+        opacity: 1;
+        scale: 100%;
+    }
+}
+
+img {
+    view-timeline-name : --image;
+    view-timeline-axis: block;
+
+    animation-timeline: --image;
+    animation-name: show;
+
+    animation-range: entry 25% cover 50%;
+    animation-fill-mode: both;
+}
+
+.pageTitle {
+    font-size: 4em; /* Tamaño grande del título */
+    font-family: Tahoma, Geneva, Verdana, sans-serif; /* Reemplaza "Nombre de tu fuente" con la fuente real que desees usar */
+    font-weight: bolder;
+    text-align: center; /* Alinea el texto al centro */
+    position: fixed; /* Fija el título en la parte superior de la página */
+    top: 0; /* Coloca el título en la parte superior */
+    left: 0; /* Coloca el título en la parte izquierda */
+    right: 0; /* Coloca el título en la parte derecha */
+    background-color: rgba(255, 255, 255, 0.8); /* Agrega un fondo semitransparente para hacer que el título sea legible */
+    padding: 10px; /* Añade un poco de espacio alrededor del título */
+    z-index: 1000; /* Asegura que el título esté en la parte superior de otros elementos */
+  }
+  
