@@ -40,5 +40,4 @@ img {
     background-color: rgba(255, 255, 255, 0.8); /* Agrega un fondo semitransparente para hacer que el título sea legible */
     padding: 10px; /* Añade un poco de espacio alrededor del título */
     z-index: 1000; /* Asegura que el título esté en la parte superior de otros elementos */
-  }
-  
+}

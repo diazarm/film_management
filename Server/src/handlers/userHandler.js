@@ -1,5 +1,7 @@
 const {createNewUser} = require('../controllers/userController')
 const {loginApi} = require('../controllers/userController')
+const bcrypt = require('bcryptjs');
+
 
 const postUserHandler = async (req, res) => {
     try {
@@ -24,7 +26,7 @@ const postUserHandler = async (req, res) => {
   };
   
 
-const postLogHandler = async (req, res) => {
+  const postLogHandler = async (req, res) => {
     try {
       const { user, password } = req.body;
       console.log("llego a back", user);
@@ -32,7 +34,9 @@ const postLogHandler = async (req, res) => {
       console.log("pass de afuera", password);
       console.log("el pass hash es", response.password);
       const match = await bcrypt.compare(password, response.password);
-      //res.status(200).json(match);//response es el usuario encontrado
+  
+      console.log("match es:", match);
+  
       if (match) {
         // Autenticación exitosa
         res.json({ success: true, message: 'Autenticación exitosa' });
@@ -41,7 +45,8 @@ const postLogHandler = async (req, res) => {
         res.json({ success: false, message: 'Autenticación fallida' });
       }
     } catch (error) {
-
+      console.log("por aqui no es");
+      console.error("Error en la comparación de contraseñas:", error); // Agrega esta línea para mostrar el mensaje de error
       res.status(400).json({ error: error.message });
     }
   };
