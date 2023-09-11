@@ -29,10 +29,8 @@ const postUserHandler = async (req, res) => {
   const postLogHandler = async (req, res) => {
     try {
       const { user, password } = req.body;
-      console.log("llego a back", user);
       const response = await loginApi(user); // Pasar el nombre como argumento
-      console.log("pass de afuera", password);
-      console.log("el pass hash es", response.password);
+
       const match = await bcrypt.compare(password, response.password);
   
       console.log("match es:", match);
@@ -45,7 +43,6 @@ const postUserHandler = async (req, res) => {
         res.json({ success: false, message: 'Autenticación fallida' });
       }
     } catch (error) {
-      console.log("por aqui no es");
       console.error("Error en la comparación de contraseñas:", error); // Agrega esta línea para mostrar el mensaje de error
       res.status(400).json({ error: error.message });
     }
