@@ -1,6 +1,9 @@
-const {createNewUser} = require('../controllers/userController')
-const {loginApi} = require('../controllers/userController')
+const {createNewUser, loginApi} = require('../controllers/userController')
 const bcrypt = require('bcryptjs');
+const jwt = require('jsonwebtoken')
+//const express = require('express');
+
+//const app = require('../app');
 
 
 const postUserHandler = async (req, res) => {
@@ -26,7 +29,7 @@ const postUserHandler = async (req, res) => {
   };
   
 
-  const postLogHandler = async (req, res) => {
+  const postLogHandler = async (req, res, key) => {
     try {
       const { user, password } = req.body;
       const response = await loginApi(user); // Pasar el nombre como argumento
@@ -37,7 +40,16 @@ const postUserHandler = async (req, res) => {
   
       if (match) {
         // Autenticación exitosa
-        res.json({ success: true, message: 'Autenticación exitosa' });
+        //res.json({ success: true, message: 'Autenticación exitosa' });
+        const payload = {
+          check : true
+        };
+        const token = jwt.sign(payload, key, {
+          expireIn: '1d'
+        })
+        res.json({ message: 'Autenticación exitosa',
+                   token: token  
+        });
       } else {
         // Autenticación fallida
         res.json({ success: false, message: 'Autenticación fallida' });
