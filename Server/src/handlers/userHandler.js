@@ -31,6 +31,7 @@ const postUserHandler = async (req, res) => {
 
   const postLogHandler = async (req, res, key) => {
     try {
+      console.log("esta es la key", key);
       const { user, password } = req.body;
       const response = await loginApi(user); // Pasar el nombre como argumento
 

@@ -19,7 +19,7 @@ app.use(express.json());
 app.use(mainRouter);
 
 
-module.exports = {app , key: keys.key};
+module.exports = app;
 
 
 
