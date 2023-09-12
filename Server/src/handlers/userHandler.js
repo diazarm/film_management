@@ -46,8 +46,8 @@ const postUserHandler = async (req, res) => {
           check : true
         };
         const token = jwt.sign(payload, key, {
-          expireIn: '1d'
-        })
+          expiresIn: '1d'
+        });
         res.json({ message: 'Autenticación exitosa',
                    token: token  
         });
