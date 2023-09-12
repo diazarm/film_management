@@ -1,9 +1,9 @@
 const {createNewUser, loginApi} = require('../controllers/userController')
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken')
-//const express = require('express');
+const {express, Router} = require('express');
 
-//const app = require('../app');
+const app = require('../app');
 
 
 const postUserHandler = async (req, res) => {
@@ -31,13 +31,10 @@ const postUserHandler = async (req, res) => {
 
   const postLogHandler = async (req, res, key) => {
     try {
-      console.log("esta es la key", key);
       const { user, password } = req.body;
       const response = await loginApi(user); // Pasar el nombre como argumento
 
       const match = await bcrypt.compare(password, response.password);
-  
-      console.log("match es:", match);
   
       if (match) {
         // Autenticación exitosa
@@ -48,7 +45,7 @@ const postUserHandler = async (req, res) => {
         const token = jwt.sign(payload, key, {
           expiresIn: '1d'
         });
-        res.json({ message: 'Autenticación exitosa',
+        res.status(200).json({ message: 'Autenticación exitosa',
                    token: token  
         });
       } else {
@@ -61,6 +58,6 @@ const postUserHandler = async (req, res) => {
     }
   };
   
-  
+
 
 module.exports = {postUserHandler, getUserHandler, postLogHandler}
